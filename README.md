@@ -216,6 +216,29 @@ $ git commit --amend -m "Message de commit"
 ```
 - Revient sur le commit précédent et modifie le message du dernier commit. Si des fichiers ont été stagés après le dernier commit, ces fichiers vont se retrouver dans le dernier commit. Si on ne veut pas modifier le message de commit, on peut enlever le -m et le "".
 
+```sh
+$ git rebase <nom_branche>
+```
+- Rappatrie les commits de la branche \<nom_branche> sur la branche courante. Cette commande est notamment utile lorsque des commits \<nom_branche> sont antérieurs aux derniers commits de la branche courante. Cela permet également de faire un merge entre 2 branches si la branche parent a évolué.
+
+```sh
+$ git rebase -i <nom_branche>
+```
+- Rappatrie les commits de la branche \<nom_branche> sur la branche courante en mode intéractif. L'intérêt du mode intéractif est qu'il permet de squasher (=rassembler) les commits avant le rebase.
+Un éditeur Vi s'ouvre et on choisit les commits à squasher à l'aide de la lettre s.  
+**ATTENTION**: Pour squasher le **commit de la ligne M avec le commit de la ligne M+1**, il faut mettre un "s" à la place du "pick" de la ligne **M+1**.   
+Si un conflit apparait, il faut:  
+1 - Résoudre le conflit  
+2 - Stager et commiter
+3 - Lancer la commande: `$ git rebase --continue`.  
+Vi apparait ensuite. Il faut rentrer les messages de commit à écrire pour les commits squashés.
+ 
+```sh
+$ git rebase -i HEAD~n
+```
+- Cette commande de passer en mode rebase intéractif. On peut par exemple squasher plusieurs commits en 1 grâce à celle-ci ou inverser l'ordre des commits. Le "~n" permet d'afficher les n derniers commit dans l'éditeur Vi.
+
+**ATTENTION**: Squasher un historique de commits poussé en conf est dangereux. 
 
 [Back to top](#HISTORIQUE-DES-MODIFICATIONS)
 ---
@@ -251,7 +274,7 @@ Exemple 2: Si <branche> est issue de master, que <branche> **ET** master ont év
 ```sh
 $ git merge --no-ff <branche>
 ```
-- Fusionne la branche \<branche> sur la branche courante en non fast-forward. Le contenu de <branche> est rappatrié sur la branche courante. Des conflits sont potentiellement à régler.
+- Fusionne la branche \<branche> sur la branche courante en non fast-forward. Le contenu de <branche> est rappatrié sur la branche courante. Des conflits sont potentiellement à régler. 1 commit de plus est à faire (ce n'est pas le cas en fast forward).
 
 ```sh
 $ git merge --squash <branche>
