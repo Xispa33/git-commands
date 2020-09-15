@@ -6,6 +6,7 @@ Ce dépôt référence une liste de commandes git.
 - [DIFFERENCES ENTRE FICHIERS](#DIFFERENCES-ENTRE-FICHIERS)
 - [ANNULER DES MODIFICATIONS](#ANNULER-DES-MODIFICATIONS)
 - [HISTORIQUE DES MODIFICATIONS](#HISTORIQUE-DES-MODIFICATIONS)
+- [BRANCHES](#BRANCHES)
 - [AUTRES](#AUTRES)
 - [LICENSE](#LICENSE)
 
@@ -213,11 +214,52 @@ $ git checkout <branche>
 
 
 [Back to top](#HISTORIQUE-DES-MODIFICATIONS)
+---
+
+# BRANCHES
+```sh
+$ git branch <nom_branche>
+```
+- Créé une branche nommée \<nom_branche>.
+
+```sh
+$ git checkout <nom_branche>
+```
+- Se placer sur la branche nommée \<nom_branche>.
+
+```sh
+$ git checkout -b <nom_branche>
+```
+-Créer et se placer sur la nouvelle branche nommée \<nom_branche>.
+
+```sh
+$ git checkout -D <nom_branche>
+```
+- Supprime la branche nommée \<nom_branche>
+
+```sh
+$ git merge <branche>
+```
+- Fusionne la branche \<branche> sur la branche courante en fast-forward (déplacement de la tête de la branche courante la tête de \<branche>).  
+Exemple 1: Si <branche> est issue de master et que seule <branche> a évolué, fusion en fast forward.  
+Exemple 2: Si <branche> est issue de master, que <branche> **ET** master ont évolué mais des fichiers différents ont été modifiés, fusion en récursif (auto-merging). 
+
+```sh
+$ git merge --no-ff <branche>
+```
+- Fusionne la branche \<branche> sur la branche courante en non fast-forward. Le contenu de <branche> est rappatrié sur la branche courante. Des conflits sont potentiellement à régler.
+
+```sh
+$ git merge --squash <branche>
+```
+- Fusionne la branche \<branche> sur la branche courante. Tous les commits effectués sur \<branche> seront concaténer en 1.
+
+[Back to top](#BRANCHES)
+---
 
 # AUTRES
 
 [Back to top](#AUTRES)
----
 
 ---
 # LICENSE
