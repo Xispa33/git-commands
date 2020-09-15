@@ -142,9 +142,9 @@ $ git checkout -- .
 - Annule les dernières modifications effectuées sur tous les fichiers **non stagés**. Les fichiers untracked ne sont pas modifiés. Le contenu de ces fichiers redevient identique à celui du dernier commit.
 
 ```sh
-$ git restore <fichier1>
+$ git restore --staged <fichier1>
 ```
-- Annule les dernières modifications effectuées sur \<fichier1>. Le contenu de \<fichier1> redevient identique à celui du dernier commit.
+- Annule les dernières modifications effectuées et stagées sur \<fichier1>. Le contenu de \<fichier1> redevient identique à celui du dernier commit.
 
 ```sh
 $ git checkout <fichier1>
@@ -211,6 +211,10 @@ $ git checkout <sha commit>
 $ git checkout <branche> 
 ```
 
+```sh
+$ git commit --amend -m "Message de commit"
+```
+- Revient sur le commit précédent et modifie le message du dernier commit. Si des fichiers ont été stagés après le dernier commit, ces fichiers vont se retrouver dans le dernier commit. Si on ne veut pas modifier le message de commit, on peut enlever le -m et le "".
 
 
 [Back to top](#HISTORIQUE-DES-MODIFICATIONS)
