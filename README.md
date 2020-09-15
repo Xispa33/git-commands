@@ -240,6 +240,16 @@ $ git rebase -i HEAD~n
 
 **ATTENTION**: Squasher un historique de commits poussé en conf est dangereux. 
 
+```sh
+$ git cherry-pick <sha commit>
+``` 
+- Récupérer le commit de sha \<sha commit>. Le commit ajouté se retrouve alors en position HEAD de la branche courante.
+
+```sh
+$ git cherry-pick -n <sha commit>
+``` 
+- Récupérer le commit de sha \<sha commit>,**sans le commiter**. La position HEAD de la branche courante n'a pas changé. Seuls les fichiers stagés dans le commit de sha \<sha commit> ont été modifiés.
+
 [Back to top](#HISTORIQUE-DES-MODIFICATIONS)
 ---
 
