@@ -465,5 +465,3 @@ $ git log -S "pattern" --pretty=format':%h %an %ad %s'
 # LICENSE
 
 - **[MIT license](http://opensource.org/licenses/mit-license.php)**
-
-git flow
