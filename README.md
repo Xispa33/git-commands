@@ -3,12 +3,13 @@ Ce dépôt référence une liste de commandes git.
 # SOMMAIRE
 - [INITIALISATION DU PROJET](#INITIALISATION-DU-PROJET)
 - [STAGING](#STAGING)
-- [DIFFERENCES ENTRE FICHIERS](#DIFFERENCES-ENTRE-FICHIERS)
+- [RECUPERATION DES MODIFICATIONS](#RECUPERATION-DES-MODIFICATIONS)
 - [ANNULER DES MODIFICATIONS](#ANNULER-DES-MODIFICATIONS)
 - [HISTORIQUE DES MODIFICATIONS](#HISTORIQUE-DES-MODIFICATIONS)
 - [BRANCHES](#BRANCHES)
+- [ETIQUETTAGE](#ETIQUETTAGE)
 - [AUTRES](#AUTRES)
-- [LICENSE](#LICENSE)
+- [LICENSE](#LICENSE)  
 
 ---
 # INITIALISATION DU PROJET
@@ -48,6 +49,11 @@ $ git config --global color.ui true
 ```
 - Avoir la coloration syntaxique
 
+```sh
+$ git config --global branch.autosetuprebase always
+```
+- Faire un rebase lors d'un pull. Il se peut que la valeur par défaut soit merge, ce qui n'est pas pratique car à chaque pull, on a un commit de merge en plus.
+
 Dans un fichier *.gitignore*, mettre tous les fichiers à ne pas stager.
 
 [Back to top](#INITIALISATION-DU-PROJET)
@@ -77,14 +83,17 @@ $ git commit -am "Message de commit"
 [Back to top](#STAGING)
 ---
 
-# DIFFERENCES ENTRE FICHIERS
-
-[Back to top](#DIFFERENCES-ENTRE-FICHIERS)
----
-
 # RECUPERATION DES MODIFICATIONS
-fetch
-pull
+```sh
+$ git pull --rebase <remote_name> <branche>
+```
+- Récupère les changements sur le dépôt distant \<remote_name> et les met dans la branche \<branche>
+
+```sh
+$ git fetch <remote_name> <branche>
+```
+- Permet de récupérer les modifications sur le remote \<remote_name> de \<branche> **SANS** les merger sur la branche \<branche> (à la différence du pull).
+
 
 [Back to top](#RECUPERATION-DES-MODIFICATIONS)
 ---
@@ -158,13 +167,6 @@ $ git checkout <sha commit> <fichier1>
 
 
 [Back to top](#ANNULER-DES-MODIFICATIONS)
----
-# FUSIONS
-merge
-merge ff
-merge noff
-
-[Back to top](#FUSIONS)
 ---
 
 # HISTORIQUE DES MODIFICATIONS
@@ -294,7 +296,168 @@ $ git merge --squash <branche>
 [Back to top](#BRANCHES)
 ---
 
+# STOCKAGE DES MODIFICATIONS
+```sh
+$ git stash
+```
+- Sauvegarde les modifications non stagées en mémoire
+
+```sh
+$ git stash list
+```
+- Voir la liste des élements stashés
+
+```sh
+$ git stash apply
+```
+- Applique l'ensemble des modifications sauvegardées du dernier stash
+
+```sh
+$ git stash drop
+```
+- Supprime le dernier élement stockés de la stash list
+
+```sh
+$ git stash save <stash message>
+```
+- Sauvegarde les modifications non stagées et choisir le message
+
+```sh
+$ git stash show stash@{n}
+```
+- Permet de visualiser les modifications non stagées du stash n
+
+```sh
+$ git stash show stash@{n} -p
+```
+- Permet de visualiser les modifications non stagées du stash n plus détaillé
+
+```sh
+$ git stash pop stash@{n}
+```
+- Apply et drop l'élément n de la stash list
+
+
+[Back to top](#STOCKAGE-DES-MODIFICATIONS)
+---
+
+# ETIQUETTAGE
+```sh
+$ git tag
+```
+- Affiche la liste des tags
+
+```sh
+$ git tag -l 'v1.xx.xx'
+```
+- Affiche la liste des tags contenant 'v1.xx.xx'
+
+```sh
+$ git tag -a vX.Y -m "Message"
+```
+- Ajouter un tag à la version courante en spécifiant le message d'étiquettage
+
+```sh
+$ git show vX.Y
+```
+- Visualiser les données de l'étiquette vX.Y
+
+```sh
+$ git tag -a vX.Y <sha commit>
+```
+- Ajouter un tag au commit de sha \<sha commit>
+
+```sh
+$ git tag -d <tag_name>
+```
+- Supprimer le tag \<tag_name> **en local**
+
+```sh
+$ git push --delete <remote> <tag_name>
+```
+- Supprimer le tag \<tag_name> **en global** sur le remote \<remote>
+[Back to top](#ETIQUETTAGE)
+---
 # AUTRES
+```sh
+$ git clone <remote_path> <folder_name>
+```
+- Clone le dépôt au chemin \<remote_path> dans le dossier \<folder_name>
+
+```sh
+$ git remote add <remote_nom> <remote_path>
+```
+- Ajouter un remote
+
+```sh
+$ git remote -v
+```
+- Afficher la liste des remotes
+
+```sh
+$ git remote rename <old_remote_nom> <new_remote_nom>
+```
+- Renommer le remote \<old_remote_nom> en \<new_remote_nom>
+
+```sh
+$ git remote remove <remote_nom>
+```
+- Supprime le remote \<remote_nom>
+
+```sh
+$ git submodule add <lien vers remote>
+```
+- Créer un submodule
+
+```sh
+$ git clone ... 
+```
+- Cloner un répository contenant des submodules et se placer sur la branche \<branche> du dépôt parent
+
+```sh
+$ git push <remote_name> <branche> 
+```
+- Pousser les modifications sur le remote \<remote_name> et la branche \<branche> 
+
+```sh
+$ git clean -f -d
+```
+- Supprime tous les fichiers non suivis. Les fichiers suivis dans le .gitignore ne seront pas supprimés
+
+```sh
+$ git clean -f -d -x
+```
+- Supprime tous les fichiers non suivis. Les fichiers suivis dans le .gitignore le seront également
+
+```sh
+$ git clean -d -n
+```
+- Permet de visualiser quels fichiers seraient supprimés si la commande `clean` était lancée.
+
+```sh
+$ git clean -i
+```
+- Clean en mode intéractif
+
+```sh
+$ git rm -f <file>
+```
+- Permet de supprimer le fichier \<file> précédemment tracké..
+
+```sh
+$ git blame <fichier>
+```
+- Permet de lister les dernières modifications de chaque ligne du fichier \<fichier>
+
+```sh
+$ git blame -L l1,l2 <fichier>
+```
+- Permet de lister les dernières modifications de chaque ligne du fichier \<fichier> entre les lignes l1 et l2
+
+```sh
+$ git log -S "pattern" --pretty=format':%h %an %ad %s'
+```
+- Permet de lister les modifications et trouver les modifications contenant "pattern". Faire un `git diff ` sur le fichier concerné après pour voir les évolutions en question.
 
 [Back to top](#AUTRES)
 
@@ -302,3 +465,5 @@ $ git merge --squash <branche>
 # LICENSE
 
 - **[MIT license](http://opensource.org/licenses/mit-license.php)**
+
+git flow
