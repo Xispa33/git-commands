@@ -459,6 +459,16 @@ $ git log -S "pattern" --pretty=format':%h %an %ad %s'
 ```
 - Permet de lister les modifications et trouver les modifications contenant "pattern". Faire un `git diff ` sur le fichier concerné après pour voir les évolutions en question.
 
+```sh
+$ git revert <sha commit>
+```
+- Permet de supprimer un commit. Cette commande créé un commit
+
+```sh
+$ git revert <oldest commit sha>..<newest commit sha>
+```
+- Permet de supprimer un range de commit. Cette commande créé un commit
+
 [Back to top](#AUTRES)
 
 ---
