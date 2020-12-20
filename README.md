@@ -85,7 +85,7 @@ $ git commit -am "Message de commit"
 $ git add <file>
 $ git commit --amend --no-edit
 ```
-- Ajouter le fichier '<file>' au dernier commit effectué et sans modifier le message de dernier commit. Pour modifier le message, enlever le paramètre --no-edit
+- Ajouter le fichier \<file> au dernier commit effectué et sans modifier le message de dernier commit. Pour modifier le message, enlever le paramètre --no-edit
 
 [Back to top](#STAGING)
 ---
