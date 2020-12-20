@@ -81,7 +81,11 @@ $ git commit -am "Message de commit"
 ```
 - Commiter la liste des fichiers modifiés et stagés (le *-a* permet de faire le `git add` sur chaque fichier stagé)
 
-
+```sh
+$ git add <file>
+$ git commit --amend --no-edit
+```
+- Ajouter le fichier <file> au dernier commit effectué et sans modifier le message de dernier commit. Pour modifier le message, enlever le paramètre --no-edit
 
 [Back to top](#STAGING)
 ---
