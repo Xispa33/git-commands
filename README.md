@@ -205,7 +205,7 @@ $ git log -n x -p <fichier>
 ```sh
 $ git show --pretty="" --name-only <sha>
 ```
-- Affiche les fichiers commités du commit de sha <sha>
+- Affiche les fichiers commités du commit de sha \<sha>
 
 
 ```sh
@@ -309,7 +309,7 @@ $ git merge --squash <branche>
 ```sh
 $ git branch -m <old_branch> <new_branch>
 ```
-- Renommer une branche nommée <old_branch> en <new_branch>
+- Renommer une branche nommée \<old_branch> en \<new_branch>
 
 [Back to top](#BRANCHES)
 ---
