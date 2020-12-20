@@ -54,6 +54,7 @@ $ git config --global branch.autosetuprebase always
 ```
 - Faire un rebase lors d'un pull. Il se peut que la valeur par défaut soit merge, ce qui n'est pas pratique car à chaque pull, on a un commit de merge en plus.
 
+
 Dans un fichier *.gitignore*, mettre tous les fichiers à ne pas stager.
 
 [Back to top](#INITIALISATION-DU-PROJET)
@@ -79,6 +80,8 @@ $ git commit -m "Message de commit"
 $ git commit -am "Message de commit"
 ```
 - Commiter la liste des fichiers modifiés et stagés (le *-a* permet de faire le `git add` sur chaque fichier stagé)
+
+
 
 [Back to top](#STAGING)
 ---
@@ -196,6 +199,12 @@ $ git log -n x -p <fichier>
 - Afficher l'historique des modifications de \<fichier> des x derniers commits
 
 ```sh
+$ git show --pretty="" --name-only <sha>
+```
+- Affiche les fichiers commités du commit de sha <sha>
+
+
+```sh
 $ git diff
 ```
 - Affiche toutes les modifications depuis le dernier commit. 
@@ -292,6 +301,11 @@ $ git merge --no-ff <branche>
 $ git merge --squash <branche>
 ```
 - Fusionne la branche \<branche> sur la branche courante. Tous les commits effectués sur \<branche> seront concaténer en 1.
+
+```sh
+$ git branch -m <old_branch> <new_branch>
+```
+- Renommer une branche nommée <old_branch> en <new_branch>
 
 [Back to top](#BRANCHES)
 ---
