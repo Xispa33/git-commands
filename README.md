@@ -394,6 +394,13 @@ $ git tag -d <tag_name>
 $ git push --delete <remote> <tag_name>
 ```
 - Supprimer le tag \<tag_name> **en global** sur le remote \<remote>
+
+```sh
+$ git tag -f -a <tagname>
+$ git push -f --tags
+```
+- Update tag <tagname>
+ 
 [Back to top](#ETIQUETTAGE)
 ---
 # AUTRES
