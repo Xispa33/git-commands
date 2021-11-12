@@ -56,10 +56,9 @@ $ git config --global branch.autosetuprebase always
 
 ```sh
 $ git config credential.helper store
-$ git push http://example.com/repo.git
+$ git pull
 ```
-Username: <type your username>
-Password: <type your password>
+Rentrer 1 fois les identifiants et ils seront enregistrés dans ~/.git-credentials
 - Pour ne pas avoir à rentrer login et pwd à chaque pull/push
 
 Dans un fichier *.gitignore*, mettre tous les fichiers à ne pas stager.
