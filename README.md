@@ -54,6 +54,13 @@ $ git config --global branch.autosetuprebase always
 ```
 - Faire un rebase lors d'un pull. Il se peut que la valeur par défaut soit merge, ce qui n'est pas pratique car à chaque pull, on a un commit de merge en plus.
 
+```sh
+$ git config credential.helper store
+$ git push http://example.com/repo.git
+```
+Username: <type your username>
+Password: <type your password>
+- Pour ne pas avoir à rentrer login et pwd à chaque pull/push
 
 Dans un fichier *.gitignore*, mettre tous les fichiers à ne pas stager.
 
